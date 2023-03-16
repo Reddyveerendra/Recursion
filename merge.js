@@ -7,7 +7,7 @@ function mergeSort(arr) {
         mergeSort(right);
         let i = 0, j = 0, k = 0;
         while (left.length > i && right.length > j) {
-            if (left[i] < right[j]) {
+            if (left[i] <= right[j]) {
                 arr[k] = left[i];
                 i += 1;
             }
@@ -23,14 +23,19 @@ function mergeSort(arr) {
             k += 1;
         }
         while (j < right.length) {
-            arr[k] = right[i];
+            arr[k] = right[j];
             j += 1;
             k += 1;
         }
     }
-
 }
-let arr = [6, 5, 12, 10, 9, 1];
-console.log(arr);
-mergeSort(arr);
-console.log(arr);
+function takeAction() {
+    let data = document.getElementById("data").value;
+    let arr = data.split(",")
+    arr = arr.map(function (x) {
+        return parseInt(x, 10);
+    })
+    mergeSort(arr); arr = arr.toString();
+    document.getElementById("result").textContent = arr;
+    document.getElementById("data").value = "";
+}
